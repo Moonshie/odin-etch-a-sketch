@@ -8,9 +8,18 @@ body {
 }
 
 .container {
-    border: 1px solid black;
+    border: 2px solid black;
     width: 640px;
     height: 640px;
     margin-left: auto;
     margin-right: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.square {
+    border: 1px solid rgba(200, 200, 200, 0.5);
+    width: 40px;
+    height: 40px;
+    box-sizing: border-box;
 }
