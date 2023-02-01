@@ -12,17 +12,19 @@ function createStartField() {
 createStartField();
 
 function resetStartField() {
-    let container = document.querySelector(".container");
-    container.innerHTML='';
-    let currentSize = prompt(`Enter side length`);
-    for (let i=0; i<(currentSize*currentSize); i++) {
-        let box = document.createElement("div");
-        box.classList.add("square");
-        box.style.width = `${640 / currentSize}px`;
-        box.style.height = `${640 / currentSize}px`;
-        container.appendChild(box);
-    }
-    addBlackListener();
+    let newSize = prompt(`Enter desired side length (no more than 100)`);
+    if (newSize.isInteger = true && newSize > 0 && newSize < 101) {
+        let container = document.querySelector(".container");
+        container.innerHTML='';
+        for (let i=0; i<(newSize*newSize); i++) {
+            let box = document.createElement("div");
+            box.classList.add("square");
+            box.style.width = `${640 / newSize}px`;
+            box.style.height = `${640 / newSize}px`;
+            container.appendChild(box);
+        }
+        addBlackListener();
+    } else alert(`Invalid value! Try again`);
 }
 
 function addBlackListener() {
