@@ -8,3 +8,7 @@ function createStartField() {
 }
 
 createStartField();
+
+const allSquares = document.querySelectorAll(".square");
+allSquares.forEach(el => el.addEventListener('mouseover', function handleClick(event)
+{event.target.classList.add('black')}));
