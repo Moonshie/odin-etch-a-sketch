@@ -4,13 +4,26 @@ function createStartField() {
     for (let i=0; i<(16*16); i++) {
         let box = document.createElement("div");
         box.classList.add("square");
-        box.style.backgroundColor = 'white';
         container.appendChild(box);
     }
     addBlackListener();
 }
 
 createStartField();
+
+function resetStartField() {
+    let container = document.querySelector(".container");
+    container.innerHTML='';
+    let currentSize = prompt(`Enter side length`);
+    for (let i=0; i<(currentSize*currentSize); i++) {
+        let box = document.createElement("div");
+        box.classList.add("square");
+        box.style.width = `${640 / currentSize}px`;
+        box.style.height = `${640 / currentSize}px`;
+        container.appendChild(box);
+    }
+    addBlackListener();
+}
 
 function addBlackListener() {
     removeEventListeners();
@@ -43,7 +56,6 @@ function addAquaListener() {
     allSquares.forEach(el => el.addEventListener('mouseover',
         function handleClick(event) {
             currentColor = event.target.style.backgroundColor;
-            console.log(currentColor);
             if (currentColor === ('rgb(0, 0, 0)')) {
                 event.target.replaceWith(el.cloneNode(true));
             } else if (currentColor.includes('rgba')) {
