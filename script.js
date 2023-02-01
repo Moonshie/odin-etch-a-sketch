@@ -1,3 +1,9 @@
+let mouseDown = false;
+document.onmousedown = function() {mouseDown = true};
+document.onmouseup = function() {mouseDown = false};
+document.addEventListener("dragstart", (event) =>{event.preventDefault();})
+
+
 function createStartField() {
     let container = document.querySelector(".container");
     container.innerHTML='';
@@ -32,9 +38,11 @@ function addBlackListener() {
     const allSquares = document.querySelectorAll(".square");
     allSquares.forEach(el => el.addEventListener('mouseover', 
         function handleClick(event) {
+            if (mouseDown === true){
             event.target.style.backgroundColor = 'rgb(0, 0, 0)';
             event.target.style.borderColor = 'rgb(0, 0, 0)';
             event.target.replaceWith(el.cloneNode(true));
+            }
         })
     )
 }
@@ -44,10 +52,12 @@ function addRainbowListener() {
     const allSquares = document.querySelectorAll(".square");
     allSquares.forEach(el => el.addEventListener('mouseover',
         function handleClick(event) {
+            if (mouseDown === true){
             let randomColor = getRandomColor();
             event.target.style.backgroundColor = randomColor;
             event.target.style.borderColor = randomColor;
             event.target.replaceWith(el.cloneNode(true));
+            }
         })
     )
 }
@@ -57,16 +67,18 @@ function addAquaListener() {
     const allSquares = document.querySelectorAll(".square");
     allSquares.forEach(el => el.addEventListener('mouseover',
         function handleClick(event) {
-            currentColor = event.target.style.backgroundColor;
-            if (currentColor === ('rgb(0, 0, 0)')) {
-                event.target.replaceWith(el.cloneNode(true));
-            } else if (currentColor.includes('rgba')) {
-                let newColor = ampOpacity(currentColor);
-                event.target.style.backgroundColor = `rgba(0, 0, 0, ${newColor})`;
-                event.target.style.borderColor = `rgba(0, 0, 0, ${newColor})`;
-            } else {
-                event.target.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
-                event.target.style.borderColor = 'rgba(0, 0, 0, 0.1)';
+            if (mouseDown === true){
+                currentColor = event.target.style.backgroundColor;
+                if (currentColor === ('rgb(0, 0, 0)')) {
+                    event.target.replaceWith(el.cloneNode(true));
+                } else if (currentColor.includes('rgba')) {
+                    let newColor = ampOpacity(currentColor);
+                    event.target.style.backgroundColor = `rgba(0, 0, 0, ${newColor})`;
+                    event.target.style.borderColor = `rgba(0, 0, 0, ${newColor})`;
+                } else {
+                    event.target.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+                    event.target.style.borderColor = 'rgba(0, 0, 0, 0.1)';
+                }
             }
         })
     )
