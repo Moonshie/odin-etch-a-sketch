@@ -16,3 +16,13 @@ function addBlackListener() {
     allSquares.forEach(el => el.addEventListener('mouseover', function handleClick(event)
         {event.target.classList.add('black')}));
 }
+
+function addRainbowListener() {
+    const allSquares = document.querySelectorAll(".square");
+    allSquares.forEach(el => el.addEventListener('mouseover',
+        function handleClick(event) {
+            event.target.style.backgroundColor = 'red';
+            event.target.style.borderColor = 'red';
+        })
+    )
+}
