@@ -12,12 +12,18 @@ function createStartField() {
 createStartField();
 
 function addBlackListener() {
+    removeEventListeners();
     const allSquares = document.querySelectorAll(".square");
-    allSquares.forEach(el => el.addEventListener('mouseover', function handleClick(event)
-        {event.target.classList.add('black')}));
+    allSquares.forEach(el => el.addEventListener('mouseover', 
+        function handleClick(event) {
+            event.target.style.backgroundColor = 'black';
+            event.target.style.borderColor = 'black';
+        })
+    )
 }
 
 function addRainbowListener() {
+    removeEventListeners()
     const allSquares = document.querySelectorAll(".square");
     allSquares.forEach(el => el.addEventListener('mouseover',
         function handleClick(event) {
@@ -25,4 +31,9 @@ function addRainbowListener() {
             event.target.style.borderColor = 'red';
         })
     )
+}
+
+function removeEventListeners() {
+    const allSquares = document.querySelectorAll(".square");
+    allSquares.forEach(el => el.replaceWith(el.cloneNode(true)));
 }
