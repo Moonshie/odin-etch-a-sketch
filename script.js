@@ -2,8 +2,9 @@ function createStartField() {
     let container = document.querySelector(".container");
     container.innerHTML='';
     for (let i=0; i<(16*16); i++) {
-        let box = document.createElement("div")
-        box.classList.add("square")
+        let box = document.createElement("div");
+        box.classList.add("square");
+        box.style.backgroundColor = 'white';
         container.appendChild(box);
     }
     addBlackListener();
@@ -18,6 +19,7 @@ function addBlackListener() {
         function handleClick(event) {
             event.target.style.backgroundColor = 'black';
             event.target.style.borderColor = 'black';
+            event.target.replaceWith(el.cloneNode(true));
         })
     )
 }
@@ -30,6 +32,7 @@ function addRainbowListener() {
             let randomColor = getRandomColor();
             event.target.style.backgroundColor = randomColor;
             event.target.style.borderColor = randomColor;
+            event.target.replaceWith(el.cloneNode(true));
         })
     )
 }
